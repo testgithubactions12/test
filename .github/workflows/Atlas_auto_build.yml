@@ -18,7 +18,6 @@ jobs:
           submodules: 'true'
      - name: Build
        run: |
-            cd .\scripts\github_actions
             echo "Auto build started"
             #Add code to run auto-build
     
