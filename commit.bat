@@ -5,4 +5,11 @@ if %ERRORLEVEL% NEQ 0 exit 1
 call git commit .\README.md -m " new commit"
 if %ERRORLEVEL% NEQ 0 exit 1
 
-git push
+call git push
+if %ERRORLEVEL% NEQ 0 (
+echo fail
+pause
+) ELSE (
+echo success
+pause
+)
