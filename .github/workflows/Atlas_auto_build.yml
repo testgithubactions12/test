@@ -1,0 +1,25 @@
+name: Atlas Auto Build
+on:
+  pull_request_review:
+    types:
+      - submitted
+jobs:
+  if_approved:
+    if: github.event.pull_request.base == 'main' && github.event.review.state == 'approved'
+    runs-on: 	
+      - self-hosted
+      - Windows
+      - test
+    steps:
+     - uses: actions/checkout@v4
+       with:
+          clean: true
+          fetch-depth: '0'
+          submodules: 'true'
+     - name: Build
+       run: |
+            cd .\scripts\github_actions
+            echo "Auto build started"
+            #Add code to run auto-build
+    
+    
