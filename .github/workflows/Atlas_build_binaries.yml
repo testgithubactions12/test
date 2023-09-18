@@ -19,7 +19,7 @@ jobs:
           clean: true
           fetch-depth: '0'
           submodules: 'true'
-          token: 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
+          token: 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
      - name: Build
        run: |
             echo "Build new binaries"
