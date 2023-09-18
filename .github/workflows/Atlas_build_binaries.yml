@@ -21,7 +21,6 @@ jobs:
           submodules: 'true'
      - name: Build
        run: |
-            cd .\scripts\github_actions
             echo "Build new binaries"
             .\commit.bat 
     
