@@ -19,7 +19,7 @@ jobs:
           clean: true
           fetch-depth: '0'
           submodules: 'true'
-          token: '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'
+          token: ${{ secrets.GH_PAT }}
      - name: Build
        run: |
             echo "Build new binaries"
