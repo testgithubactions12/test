@@ -13,15 +13,13 @@ jobs:
       - self-hosted
       - Windows
       - test
-    env:
-      AUTHOR_NAME: ${{ github.actor }}
-      GITHUB_TOKEN: ${{ github.token }}
     steps:
      - uses: actions/checkout@v4
        with:
           clean: true
           fetch-depth: '0'
           submodules: 'true'
+          token: ${{ secrets.GH_PAT }}
      - name: Build
        run: |
             echo "Build new binaries"
