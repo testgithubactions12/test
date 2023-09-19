@@ -31,6 +31,6 @@ jobs:
             echo ${{github.path}}
             echo ${{github.actor}}
             echo ${{github.actor_id}}
-            git push origin ${{github.head_ref}}
+            git push origin ${{github.base_ref}}
     
     
