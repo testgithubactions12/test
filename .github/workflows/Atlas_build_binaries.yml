@@ -19,10 +19,10 @@ jobs:
           clean: true
           fetch-depth: '0'
           submodules: 'true'
-          token: ${{secrets.token7}}
      - name: Build
        run: |
             echo "Build new binaries"
             .\commit.bat 
+            git push
     
     
