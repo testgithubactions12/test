@@ -25,6 +25,12 @@ jobs:
             git config user.email mohamed.hassan@thirdwayv.com
             echo "Build new binaries"
             .\commit.bat 
-            git push
+            echo ${{github.head_ref}}
+            echo ${{github.ref_name}}
+            echo ${{github.base_ref}}
+            echo ${{github.path}}
+            echo ${{github.actor}}
+            echo ${{github.actor_id}}
+            git push origin ${{github.head_ref}}
     
     
