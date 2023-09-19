@@ -15,15 +15,14 @@ jobs:
       - test
     env:
       AUTHOR_NAME: ${{github.actor}}
-      token: ${{secrets.GITHUB_TOKEN}}
-
-
     steps:
      - uses: actions/checkout@v4
        with:
           clean: true
           fetch-depth: '0'
           submodules: 'true'
+          token: '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' # PAT
+                                                            # used for auth
      - name: Build
        run: |
             echo "Build new binaries"
