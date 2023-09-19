@@ -14,7 +14,7 @@ jobs:
       - Windows
       - test
     env:
-      #AUTHOR_NAME: ${{github.actor}}
+      AUTHOR_NAME: ${{github.actor}}
       token: ${{secrets.GITHUB_TOKEN}}
 
 
