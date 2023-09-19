@@ -5,17 +5,17 @@ on:
       - submitted
 jobs:
   if_approved:
-    if: github.event.pull_request.base == 'main' && github.event.review.state == 'approved'
+    if: github.event.review.state == 'approved' && github.event.pull_request.state == 'approved'
     runs-on: 	
       - self-hosted
       - Windows
       - test
     steps:
-     - uses: actions/checkout@v4
-       with:
-          clean: true
-          fetch-depth: '0'
-          submodules: 'true'
+     # - uses: actions/checkout@v4
+       # with:
+          # clean: true
+          # fetch-depth: '0'
+          # submodules: 'true'
      - name: Build
        run: |
             echo "Auto build started"
