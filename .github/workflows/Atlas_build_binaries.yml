@@ -21,9 +21,10 @@ jobs:
           clean: true
           fetch-depth: '0'
           submodules: 'true'
-          token: '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'
      - name: Build
        run: |
+            git config user.name "mohamed hassan"
+            git config user.email mohamed.hassan@thirdwayv.com
             echo "Build new binaries"
             .\commit.bat 
             git push
