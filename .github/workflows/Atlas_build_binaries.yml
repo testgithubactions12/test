@@ -13,8 +13,6 @@ jobs:
       - self-hosted
       - Windows
       - test
-    env:
-      AUTHOR_NAME: ${{github.actor}}
     steps:
      - uses: actions/checkout@v4
        with:
