@@ -19,7 +19,6 @@ jobs:
           clean: true
           fetch-depth: '0'
           submodules: 'true'
-          token: ${{ secrets.GITHUB_TOKEN }}
      - name: Build
        run: |
             echo "Build new binaries"
