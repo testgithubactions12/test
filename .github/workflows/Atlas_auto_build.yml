@@ -5,7 +5,7 @@ on:
       - submitted
 jobs:
   if_approved:
-    if: github.event.pull_request.base == 'main' && github.event.review.state == 'approved'
+    if: github.event.review.state == 'approved'
     runs-on: 	
       - self-hosted
       - Windows
