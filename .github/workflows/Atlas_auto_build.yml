@@ -5,14 +5,12 @@ on:
       - created
 jobs:
   if_approved:
-    #if: github.event.review.state == 'approved'
-    if: github.event.comment.body == 'run auto build'
+    if: github.event.review.state == 'approved' && github.event.pull_request.mergeable
+    
     runs-on: 	
       - self-hosted
       - Windows
       - test
-    env: 
-      AUTHOR_NAME: ${{github.actor}}
     steps:
      # - uses: actions/checkout@v4
        # with:
