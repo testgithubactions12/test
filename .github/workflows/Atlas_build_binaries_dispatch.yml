@@ -13,11 +13,6 @@ jobs:
             echo ${{ github.run_attempt }}
             echo ${{ github.run_id }}
             echo ${{ github.run_number }}
-            echo ${{ github.event.pull_request.number }}
-            gh pr view ${{ github.event.pull_request.number }}
-            gh pr view ${{ github.event.pull_request.number }} --json latestReviews
-            gh pr view ${{ github.event.pull_request.number }} --json Reviews
-            gh pr view ${{ github.event.pull_request.number }} --json reviewDecision
             echo ${{ github.ref_name }}
             echo "auto build"
     
