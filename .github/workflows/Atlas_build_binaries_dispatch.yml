@@ -10,7 +10,6 @@ jobs:
     steps:
      - name: Auto Build
        run: |
-            cd .\scripts\github_actions
             echo "auto build"
     
     
