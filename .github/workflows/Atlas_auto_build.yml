@@ -1,8 +1,8 @@
 name: Atlas Auto Build
 on:
-  pull_request_review_comment:
+  pull_request_review:
     types:
-      - created
+      - submitted
 jobs:
   if_approved:
     if: github.event.review.state == 'approved' && github.event.pull_request.mergeable
