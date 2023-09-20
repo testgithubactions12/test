@@ -19,6 +19,13 @@ jobs:
           # submodules: 'true'
      - name: Build
        run: |
+            token=${{ secrets.GITHUB_TOKEN }}
+            base64AuthInfo='$token | base64 -e'
+            response=$(curl --request GET \
+            --url https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews \
+            --header 'Authorization: $base64AuthInfo' \
+            --header 'Content-Type: application/json')
+            echo $response | jq '.[] | select(.state=="APPROVED")'
             echo ${{github.event.pull_request.state }}
             echo "Auto build started"
             #Add code to run auto-build
