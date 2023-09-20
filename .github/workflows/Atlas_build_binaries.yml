@@ -13,6 +13,8 @@ jobs:
       - self-hosted
       - Windows
       - test
+    env:
+      GITHUB_TOKEN: ${{ secrets.TEST_SECRET }}
     steps:
      - uses: actions/checkout@v4
        with:
