@@ -10,6 +10,9 @@ jobs:
     steps:
      - name: Auto Build
        run: |
+            echo ${{ github.run_attempt }}
+            echo ${{ github.run_id }}
+            echo ${{ github.run_number }}
             echo ${{ github.ref_name }}
             echo "auto build"
     
