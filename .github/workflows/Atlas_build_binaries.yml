@@ -22,8 +22,6 @@ jobs:
           token: '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'
      - name: Build
        run: |
-            git config user.name "mohamed hassan"
-            git config user.email mohamed.hassan@thirdwayv.com
             echo "Build new binaries"
             .\commit.bat 
             echo ${{github.head_ref}}

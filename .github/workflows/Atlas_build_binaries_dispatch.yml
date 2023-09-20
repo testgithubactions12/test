@@ -1,0 +1,16 @@
+name: Dispatch work flow
+on:
+  workflow_dispatch
+jobs:
+  Dispatch:
+    runs-on: 	
+      - self-hosted
+      - Windows
+      - test
+    steps:
+     - name: Auto Build
+       run: |
+            cd .\scripts\github_actions
+            echo "auto build"
+    
+    
