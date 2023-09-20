@@ -10,7 +10,7 @@ jobs:
     steps:
      - name: Auto Build
        run: |
-            cd .\scripts\github_actions
+            echo ${{ github.ref_name }}
             echo "auto build"
     
     
