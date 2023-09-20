@@ -1,23 +1,14 @@
-name: Atlas Auto Build
+name: Dispatch work flow
 on:
-  pull_request_review:
-    types:
-      - submitted
+  workflow_dispatch
 jobs:
-  if_approved:
-    if: github.event.review.state == 'approved'
-    
+  Dispatch:
     runs-on: 	
       - self-hosted
       - Windows
       - test
     steps:
-     # - uses: actions/checkout@v4
-       # with:
-          # clean: true
-          # fetch-depth: '0'
-          # submodules: 'true'
-     - name: Build
+     - name: Auto Build
        run: |
             echo ${{ github.run_attempt }}
             echo ${{ github.run_id }}
@@ -27,8 +18,7 @@ jobs:
             gh pr view ${{ github.event.pull_request.number }} --json latestReviews
             gh pr view ${{ github.event.pull_request.number }} --json Reviews
             gh pr view ${{ github.event.pull_request.number }} --json reviewDecision
-
-            echo "Auto build started"
-            #Add code to run auto-build
+            echo ${{ github.ref_name }}
+            echo "auto build"
     
     
