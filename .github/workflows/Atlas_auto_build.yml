@@ -19,9 +19,9 @@ jobs:
           # submodules: 'true'
      - name: Build
        run: |
-            curl --request GET \
+            (curl --request GET \
             --url https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews \
-            --header 'Content-Type: application/json'
+            --header 'Content-Type: application/json')
             echo ${{github.event.pull_request.state }}
             echo "Auto build started"
             #Add code to run auto-build
