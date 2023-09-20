@@ -21,7 +21,7 @@ jobs:
        run: |
             response=$(curl --request GET \
             --url https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews \
-            --header 'Authorization: Bearer ${{ secrets.TEST_SECRET }}' \
+            --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
             --header 'Content-Type: application/json')
             echo $response | jq '.[] | select(.state=="APPROVED")'
             echo ${{github.event.pull_request.state }}
