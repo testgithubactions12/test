@@ -27,8 +27,7 @@ jobs:
             gh pr view ${{ github.event.pull_request.number }} --json latestReviews 
             gh pr view ${{ github.event.pull_request.number }} --json reviews
             gh pr view ${{ github.event.pull_request.number }} --json reviewDecision
-            set x=$(gh pr view 49 --json latestReviews --jq .[].[].state)
-            echo %x%
+            $(gh pr view 49 --json latestReviews --jq .[].[].state)
             echo "Auto build started"
             #Add code to run auto-build
        env:
