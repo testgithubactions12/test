@@ -20,21 +20,22 @@ jobs:
           token: ${{ secrets.TEST_SECRET }}
       - name: Build
         run: |
-             $states = @()
-             $states=$(gh pr view ${{ github.event.pull_request.number }} --json latestReviews --jq .[].[].state)
-             Write-Output $states.count
+             $ReviewStates = @()
+             $ReviewStates=$(gh pr view ${{ github.event.pull_request.number }} --json latestReviews --jq .[].[].state)
+
              $approvesCount = 0
-             foreach($state in $states)
+
+             foreach($state in $ReviewStates)
              {
-               Write-Output $state
                if($state -eq "APPROVED")
                {
                  $approvesCount++
                }
              }
-             if($approvesCount -eq 3)
+
+             if($approvesCount -eq 1)
              {
-               echo "Run Auto Build"
+               echo "Auto build started"
              }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
