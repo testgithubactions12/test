@@ -12,23 +12,32 @@ jobs:
       - Windows
       - test
     steps:
-     # - uses: actions/checkout@v4
-       # with:
-          # clean: true
-          # fetch-depth: '0'
-          # submodules: 'true'
-     - name: Build
-       run: |
-            echo ${{ github.run_attempt }}
-            echo ${{ github.run_id }}
-            echo ${{ github.run_number }}
-            echo ${{ github.event.pull_request.number }}
-            gh pr view ${{ github.event.pull_request.number }}
-            gh pr view ${{ github.event.pull_request.number }} --json latestReviews
-            gh pr view ${{ github.event.pull_request.number }} --json Reviews
-            gh pr view ${{ github.event.pull_request.number }} --json reviewDecision
+      - uses: actions/checkout@v4
+        with:
+          clean: true
+          fetch-depth: '0'
+          submodules: 'true'
+          token: ${{ secrets.TEST_SECRET }}
+      - name: Build
+        run: |
+             $ReviewStates = @()
+             $ReviewStates=$(gh pr view ${{ github.event.pull_request.number }} --json latestReviews --jq .[].[].state)
 
-            echo "Auto build started"
-            #Add code to run auto-build
+             $approvesCount = 0
+
+             foreach($state in $ReviewStates)
+             {
+               if($state -eq "APPROVED")
+               {
+                 $approvesCount++
+               }
+             }
+
+             if($approvesCount -eq 1)
+             {
+               echo "Auto build started"
+             }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
     
