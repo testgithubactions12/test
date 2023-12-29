@@ -10,7 +10,7 @@ jobs:
       output2: ${{ steps.step2.outputs.test }}
     steps:
       - id: step1
-        run: echo "test=hello" >> "$GITHUB_OUTPUT"
+        run: $GITHUB_OUTPUT=$(echo "test=hello")
       - id: step2
         run: echo "test=world" >> "$GITHUB_OUTPUT"
   job2:
