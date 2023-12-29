@@ -2,19 +2,6 @@ name: Dispatch work flow
 on:
   workflow_dispatch
 jobs:
-  Dispatch:
-    runs-on: 	
-      - self-hosted
-      - Windows
-      - test
-    steps:
-     - name: Auto Build
-       run: |
-            echo ${{ github.run_attempt }}
-            echo ${{ github.run_id }}
-            echo ${{ github.run_number }}
-            echo ${{ github.ref_name }}
-            echo "auto build"
   job1:
     runs-on: Windows
     # Map a step output to a job output
