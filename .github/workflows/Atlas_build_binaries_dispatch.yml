@@ -16,7 +16,7 @@ jobs:
             echo ${{ github.ref_name }}
             echo "auto build"
   job1:
-    runs-on: ubuntu-latest
+    runs-on: Windows
     # Map a step output to a job output
     outputs:
       output1: ${{ steps.step1.outputs.test }}
@@ -27,7 +27,7 @@ jobs:
       - id: step2
         run: echo "test=world" >> "$GITHUB_OUTPUT"
   job2:
-    runs-on: ubuntu-latest
+    runs-on: Windows
     needs: job1
     steps:
       - env:
