@@ -1,8 +1,7 @@
 name: Dispatch work flow
 on:
   workflow_dispatch
-env:
-  shell: bash
+
 jobs:
   job1:
     runs-on: Windows
@@ -12,7 +11,8 @@ jobs:
     steps:
       - id: step1
         run: |
-             echo "test=hello" >> "$GITHUB_OUTPUT"
+             echo test=hello >> $Env:GITHUB_OUTPUT
+             echo $GITHUB_OUTPUT
   job2:
     runs-on: Windows
     needs: job1
