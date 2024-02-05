@@ -5,7 +5,7 @@ on:
 jobs:
   scheduled_run:    
     runs-on: 	
-      - ubuntu
+      - ubuntu-latest
     steps:
       - name: Build
         run: |
