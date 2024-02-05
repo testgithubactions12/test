@@ -1,0 +1,17 @@
+name: Scheduler
+on:
+  schedule:
+    - cron: '* 45 * * *'
+jobs:
+  scheduled_run:    
+    runs-on: 	
+      - self-hosted
+      - Windows
+      - test
+    steps:
+      - name: Build
+        run: |
+             echo "scheduled action"
+
+    
+    
