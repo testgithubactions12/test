@@ -1,15 +1,15 @@
-name: Dispatch work flow
+name: Scheduler
 on:
-  workflow_dispatch
-
+  schedule:
+    - cron: '* * * * *'
 jobs:
-  job1:
-    runs-on: ubuntu-latest
-    # Map a step output to a job output
-    outputs:
-      output1: ${{ steps.step1.outputs.test }}
+  scheduled_run:    
+    runs-on: 	
+      - ubuntu-latest
     steps:
-      - id: step1
+      - name: Build
         run: |
-             echo "Hello"
+             echo "scheduled action"
+
+    
     
