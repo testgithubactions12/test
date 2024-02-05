@@ -7,7 +7,7 @@ jobs:
     runs-on: 	
       - ubuntu-latest
     steps:
-      - name: Build
+      - name: jop
         run: |
              echo "scheduled action"
 
