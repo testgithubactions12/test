@@ -1,0 +1,15 @@
+name: Scheduler
+on:
+  schedule:
+    - cron: '* * * * *'
+jobs:
+  scheduled_run:    
+    runs-on: 	
+      - ubuntu-latest
+    steps:
+      - name: Build
+        run: |
+             echo "scheduled action"
+
+    
+    
