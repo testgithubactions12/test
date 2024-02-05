@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: jop
         run: |
-             echo "scheduled action"
+             echo "scheduled actions"
 
     
     
