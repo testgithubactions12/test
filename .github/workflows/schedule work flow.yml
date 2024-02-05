@@ -1,13 +1,11 @@
 name: Scheduler
 on:
   schedule:
-    - cron: '55 * * * *'
+    - cron: '* * * * *'
 jobs:
   scheduled_run:    
     runs-on: 	
-      - self-hosted
-      - Windows
-      - test
+      - ubuntu
     steps:
       - name: Build
         run: |
