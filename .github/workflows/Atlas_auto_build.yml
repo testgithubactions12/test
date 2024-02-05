@@ -12,22 +12,32 @@ jobs:
       - Windows
       - test
     steps:
-     # - uses: actions/checkout@v4
-       # with:
-          # clean: true
-          # fetch-depth: '0'
-          # submodules: 'true'
-     - name: Build
-       run: |
-            token=${{ secrets.GITHUB_TOKEN }}
-            base64AuthInfo='$token | base64 -e'
-            response=$(curl --request GET \
-            --url https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews \
-            --header 'Authorization: $base64AuthInfo' \
-            --header 'Content-Type: application/json')
-            echo $response | jq '.[] | select(.state=="APPROVED")'
-            echo ${{github.event.pull_request.state }}
-            echo "Auto build started"
-            #Add code to run auto-build
+      - uses: actions/checkout@v4
+        with:
+          clean: true
+          fetch-depth: '0'
+          submodules: 'true'
+          token: ${{ secrets.TEST_SECRET }}
+      - name: Build
+        run: |
+             $ReviewStates = @()
+             $ReviewStates=$(gh pr view ${{ github.event.pull_request.number }} --json latestReviews --jq .[].[].state)
+
+             $approvesCount = 0
+
+             foreach($state in $ReviewStates)
+             {
+               if($state -eq "APPROVED")
+               {
+                 $approvesCount++
+               }
+             }
+
+             if($approvesCount -eq 1)
+             {
+               echo "Auto build started"
+             }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
     
