@@ -1,7 +1,7 @@
 name: Scheduler
 on:
   schedule:
-    - cron: '* 45 * * *'
+    - cron: '55 * * * *'
 jobs:
   scheduled_run:    
     runs-on: 	
