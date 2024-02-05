@@ -1,35 +1,15 @@
-name: Atlas Project Binaries
-run-name: Building Atlas Project Binaries
+name: Scheduler_2
 on:
-  pull_request:
-    branches:
-      - main
-    types:
-      - closed
+  schedule:
+    - cron: '* * * * *'
 jobs:
-  if_merged:
-    if: github.event.pull_request.merged == true
+  scheduled_run:    
     runs-on: 	
-      - self-hosted
-      - Windows
-      - test
+      - ubuntu-latest
     steps:
-     - uses: actions/checkout@v4
-       with:
-          clean: true
-          fetch-depth: '0'
-          submodules: 'true'
-          token: ${{secrets.TEST_SECRET}}
-     - name: Build
-       run: |
-            echo "Build new binaries"
-            .\commit.bat 
-            echo ${{github.head_ref}}
-            echo ${{github.ref_name}}
-            echo ${{github.base_ref}}
-            echo ${{github.path}}
-            echo ${{github.actor}}
-            echo ${{github.actor_id}}
-            git push origin ${{github.base_ref}}
+      - name: Build
+        run: |
+             echo "scheduled action"
+
     
     
