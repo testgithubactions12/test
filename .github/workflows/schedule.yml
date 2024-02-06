@@ -1,15 +1,15 @@
-name: Scheduler
+name: 'Close stale issues and PRs'
 on:
   schedule:
-    - cron: '* * * * *'
-jobs:
-  scheduled_run:    
-    runs-on: 	
-      - ubuntu-latest
-    steps:
-      - name: jop
-        run: |
-             echo "scheduled actions"
+    - cron: '10 1 * * *'
 
-    
-    
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          stale-issue-message: 'Message to comment on stale issues. If none provided, will not mark issues stale'
+          stale-pr-message: 'Message to comment on stale PRs. If none provided, will not mark PRs stale'
+          days-before-stale: 1
+          days-before-close: 1
