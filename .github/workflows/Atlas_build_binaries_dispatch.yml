@@ -21,11 +21,11 @@ jobs:
           OUTPUT1: ${{needs.job1.outputs.output1}}
         run: |
              echo "Build new binaries"
-            .\commit.bat 
-            echo ${{github.head_ref}}
-            echo ${{github.ref_name}}
-            echo ${{github.base_ref}}
-            echo ${{github.path}}
-            echo ${{github.actor}}
-            echo ${{github.actor_id}}
-            git push origin ${{github.base_ref}}
+             .\commit.bat 
+             echo ${{github.head_ref}}
+             echo ${{github.ref_name}}
+             echo ${{github.base_ref}}
+             echo ${{github.path}}
+             echo ${{github.actor}}
+             echo ${{github.actor_id}}
+             git push origin ${{github.base_ref}}
