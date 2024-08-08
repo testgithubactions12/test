@@ -10,12 +10,12 @@ jobs:
       - run: |
              echo "Build new binaries"
              ls
-             ./commit.bat 
-             git commit ./README.md -m " new commit"
+             #./commit.bat 
+             #git commit ./README.md -m " new commit"
              echo ${{github.head_ref}}
              echo ${{github.ref_name}}
              echo ${{github.base_ref}}
              echo ${{github.path}}
              echo ${{github.actor}}
              echo ${{github.actor_id}}
-             git push
+             #git push
