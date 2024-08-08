@@ -18,7 +18,6 @@ jobs:
      - run: |
              echo "Build new binaries"
              ls
-             echo ls
-             #./commit.bat 
-             #git commit ./README.md -m " new commit"
-             #git push
+             ./commit.bat 
+             git commit ./README.md -m " new commit"
+             git push
