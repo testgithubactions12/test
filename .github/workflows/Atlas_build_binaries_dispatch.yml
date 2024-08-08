@@ -9,8 +9,8 @@ jobs:
     steps:
       - run: |
              echo "Build new binaries"
-             .\commit.bat 
-             git commit .\README.md -m " new commit"
+             ./commit.bat 
+             git commit ./README.md -m " new commit"
              echo ${{github.head_ref}}
              echo ${{github.ref_name}}
              echo ${{github.base_ref}}
