@@ -4,10 +4,18 @@ on:
 
 jobs:
   job1:
-    runs-on: Windows
-    # Map a step output to a job output
+    runs-on: 	
+      - self-hosted
+      - Windows
+      - test
     steps:
-      - run: |
+     - uses: actions/checkout@v4
+       with:
+          clean: true
+          fetch-depth: '0'
+          submodules: 'true'
+          token: ${{github.token}}      
+     - run: |
              echo "Build new binaries"
              ls
              echo ls
