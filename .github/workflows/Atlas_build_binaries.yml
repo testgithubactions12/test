@@ -22,13 +22,14 @@ jobs:
 
      - name: Delete_Branch
        run: |
+             if [[ -z ${git ls-remote --heads origin Develop-Auto-Build} ]]; then
+                git push origin --delete Develop-Auto-Build
+             fi
+	     
              if [[ -z ${git branch --list Develop-Auto-Build} ]]; then
                 git branch -D Develop-Auto-Build
              fi
 
-             if [[ -z ${git ls-remote --heads origin Develop-Auto-Build} ]]; then
-                git push origin --delete Develop-Auto-Build
-             fi
 
      - name: Create_Branch
        run: |
