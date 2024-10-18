@@ -34,7 +34,7 @@ jobs:
              .\commit.bat
      - name: Create_PR
        run: |
-             gh pr create --base PLAT-14384_1 --head Develop-Auto-Build
+             gh pr create --base main --head Develop-Auto-Build
      - name: Merge_PR
        run: |
              gh pr merge Develop-Auto-Build --delete-branch
