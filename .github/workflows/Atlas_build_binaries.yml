@@ -23,7 +23,7 @@ jobs:
      - name: Delete_Branch
        run: |            
             $check_local_branch = $(git branch --list Develop-Auto-Build)
-            
+            echo $check_local_branch
             if($check_local_branch -ne "Develop-Auto-Build")
             {
               git branch -D Develop-Auto-Build
