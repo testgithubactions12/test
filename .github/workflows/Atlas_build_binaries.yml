@@ -34,6 +34,6 @@ jobs:
              gh pr create --base main --head Develop-Auto-Build --title "build" --body "Auto build" 
      - name: Merge_PR
        run: |
-             gh pr merge Develop-Auto-Build --admin
+             gh pr merge Develop-Auto-Build --admin --merge
     
     
