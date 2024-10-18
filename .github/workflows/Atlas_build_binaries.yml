@@ -22,15 +22,20 @@ jobs:
 
      - name: Delete_Branch
        run: |
-             if [[ -z ${git ls-remote --heads origin Develop-Auto-Build} ]]; then
-                git push origin --delete Develop-Auto-Build
-             fi
-
-             if [[ -z ${git branch --list Develop-Auto-Build} ]]; then
-                git branch -D Develop-Auto-Build
-             fi
-
-
+            $check_remote_branch = $(git ls-remote --heads origin Develop-Auto-Build)
+            
+            if($check_remote_branch -neq "refs/heads/Develop-Auto-Build")
+            {
+              git push origin --delete Develop-Auto-Build
+            }
+            
+            $check_local_branch = $(git branch --list Develop-Auto-Build)
+            
+            if($check_local_branch -neq "Develop-Auto-Build")
+            {
+              git branch -D Develop-Auto-Build
+            }
+              
      - name: Create_Branch
        run: |
              git switch -c Develop-Auto-Build
