@@ -27,7 +27,7 @@ jobs:
        run: |
              echo "Auto build started"
              .\commit.bat
-             git commit *.md "Auto build passed"
+             git commit *.md -m "Auto build passed"
              git push -f --set-upstream origin Develop-Auto-Build
      - name: Create_PR
        run: |
