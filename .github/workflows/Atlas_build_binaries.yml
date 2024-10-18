@@ -36,6 +36,7 @@ jobs:
        run: |
              echo "Auto build started"
              .\commit.bat
+             git commit *.txt Auto build passed"
              git.exe push --force
      - name: Create_PR
        run: |
