@@ -31,7 +31,7 @@ jobs:
              git push -f --set-upstream origin Develop-Auto-Build
      - name: Create_PR
        run: |
-             gh pr create --base main --head Develop-Auto-Build --title "build" --body "Auto build"
+             gh pr create --base main --head Develop-Auto-Build --title "build" --body "Auto build" --admin
      - name: Merge_PR
        run: |
              gh pr merge Develop-Auto-Build
