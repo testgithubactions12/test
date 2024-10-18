@@ -31,7 +31,7 @@ jobs:
 
      - name: Create_Branch
        run: |
-             git switch -c Develop-Auto-Build
+             git switch -f -c Develop-Auto-Build
      - name: Auto Build
        run: |
              echo "Auto build started"
