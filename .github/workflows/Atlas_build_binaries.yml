@@ -20,16 +20,24 @@ jobs:
           fetch-depth: '0'
           submodules: 'true'
           token: ${{github.token}}
-     - name: Build
+
+     - name: Delete_Branch
        run: |
-            echo "Build new binaries"
-            .\commit.bat 
-            echo ${{github.head_ref}}
-            echo ${{github.ref_name}}
-            echo ${{github.base_ref}}
-            echo ${{github.path}}
-            echo ${{github.actor}}
-            echo ${{github.actor_id}}
-            git push origin ${{github.base_ref}}
+             git branch -D Develop-Auto-Build
+             git push origin --delete Develop-Auto-Build
+
+     - name: Create_Branch
+       run: |
+             git switch -c Develop-Auto-Build
+     - name: Auto Build
+       run: |
+             echo "Auto build started"
+             .\commit.bat
+     - name: Create_PR
+       run: |
+             gh pr create --base PLAT-14384_1 --head Develop-Auto-Build
+     - name: Merge_PR
+       run: |
+             gh pr merge Develop-Auto-Build --delete-branch
     
     
