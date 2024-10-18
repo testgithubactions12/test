@@ -21,6 +21,7 @@ jobs:
           token: ${{github.token}}
      - name: Create_Branch
        run: |
+             git branch -D Develop-Auto-Build
              git switch -f -c Develop-Auto-Build
      - name: Auto Build
        run: |
@@ -33,6 +34,6 @@ jobs:
              gh pr create --base main --head Develop-Auto-Build
      - name: Merge_PR
        run: |
-             gh pr merge Develop-Auto-Build --delete-branch
+             gh pr merge Develop-Auto-Build
     
     
