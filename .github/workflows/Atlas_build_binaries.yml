@@ -21,14 +21,7 @@ jobs:
           token: ${{github.token}}
 
      - name: Delete_Branch
-       run: |
-            $check_remote_branch = $(git ls-remote --heads origin Develop-Auto-Build)
-            
-            if($check_remote_branch -ne "refs/heads/Develop-Auto-Build")
-            {
-              git push origin --delete Develop-Auto-Build
-            }
-            
+       run: |            
             $check_local_branch = $(git branch --list Develop-Auto-Build)
             
             if($check_local_branch -ne "Develop-Auto-Build")
@@ -43,6 +36,8 @@ jobs:
        run: |
              echo "Auto build started"
              .\commit.bat
+             git commit *.txt Auto build passed"
+             git.exe push --force
      - name: Create_PR
        run: |
              gh pr create --base main --head Develop-Auto-Build
