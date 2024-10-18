@@ -27,11 +27,11 @@ jobs:
        run: |
              echo "Auto build started"
              .\commit.bat
-             git commit *.txt "Auto build passed"
+             git commit *.md "Auto build passed"
              git push -f --set-upstream origin Develop-Auto-Build
      - name: Create_PR
        run: |
-             gh pr create --base main --head Develop-Auto-Build
+             gh pr create --base main --head Develop-Auto-Build --title "build" --body "Auto build"
      - name: Merge_PR
        run: |
              gh pr merge Develop-Auto-Build
