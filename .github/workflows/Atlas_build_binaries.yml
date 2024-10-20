@@ -21,6 +21,9 @@ jobs:
           token: ${{github.token}}
      - name: Create_Branch
        run: |
+             echo ${{github.event.pull_request.merged_by}}
+             echo ${{github.event.pull_request.head}}
+             echo ${{github.event.pull_request.user}}
              git branch -D Develop-Auto-Build
              git switch -f -c Develop-Auto-Build 
      - name: Auto Build
