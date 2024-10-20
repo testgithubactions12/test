@@ -24,5 +24,8 @@ jobs:
             echo "Build new binaries"
             .\commit.bat 
              git commit *.md -m "Auto build passed"
+             echo ${{github.base_ref}}
              git push origin ${{github.base_ref}}
+       env: 
+        GIHUB_TOKEN: ${{github.token}}
     
