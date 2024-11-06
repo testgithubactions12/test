@@ -1,5 +1,9 @@
 name: Atlas Auto Build
 on:
+  pull_request:
+    types:
+      #run the job when pull request opened
+      - opened
   pull_request_review:
     types:
       - submitted
