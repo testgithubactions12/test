@@ -7,10 +7,7 @@ on:
   pull_request_review:
     types:
       - submitted
-jobs:
-  if_approved:
-    if: (github.event.review.state == 'approved') && (github.actor != 'twi-general')
-    
+jobs:    
     runs-on: 	
       - self-hosted
       - Windows
@@ -23,28 +20,35 @@ jobs:
           token: ${{ secrets.TEST_SECRET }}
       - name: Build
         run: |
-             $ReviewStates = @()
-             $ReviewStates=$(gh pr view ${{ github.event.pull_request.number }} --json latestReviews --jq .[].[].state)
-
-             $approvesCount = 0
-
-             foreach($state in $ReviewStates)
+             if(${{ github.actor}} -ne 'twi-general')
              {
-               if($state -eq "APPROVED")
-               {
-                 $approvesCount++
-               }
-             }
 
-             if($approvesCount -eq 1)
-             {
-               echo "Auto build started"
-             }
+                $ReviewStates = @()
+                $ReviewStates=$(gh pr view ${{ github.event.pull_request.number }} --json latestReviews --jq .[].[].state)
+
+                $approvesCount = 0
+
+                foreach($state in $ReviewStates)
+                {
+                  if($state -eq "APPROVED")
+                  {
+                    $approvesCount++
+                  }
+                }
+
+                if($approvesCount -eq 1)
+                {
+                  echo "Auto build started"
+                }
+              }
+              else
+              {
+                echo "skip jop"
+              }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   Tools_Build:
-    if: github.actor != 'twi-general'
     runs-on: 	
       - self-hosted
       - Windows
@@ -52,5 +56,16 @@ jobs:
       - name: Echo
         run: |
              echo "Hello"
+  merge:
+    runs-on: 	
+      - self-hosted
+      - Windows
+    steps:
+      - name: Merge_PR
+        run: |
+             if(${{ github.actor}} -eq 'twi-general')
+             {
+               gh pr merge Develop-Auto-Build --admin --merge
+             }
     
     
