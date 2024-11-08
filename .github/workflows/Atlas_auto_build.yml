@@ -58,7 +58,7 @@ jobs:
     steps:
       - name: Merge_PR
         run: |
-             if('${{ github.actor}}' -eq 'twi-general')
+             if(('${{ github.actor}}' -eq 'twi-general') -and ('${{github.event.pull_request.title}}' -eq 'build'))
              {
                gh pr merge Develop-Auto-Build --admin --merge
              }
