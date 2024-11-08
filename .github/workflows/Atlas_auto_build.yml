@@ -13,12 +13,6 @@ jobs:
       - self-hosted
       - Windows
     steps:
-      - uses: actions/checkout@v4
-        with:
-          clean: true
-          fetch-depth: '0'
-          submodules: 'true'
-          token: ${{ secrets.TEST_SECRET }}
       - name: Build
         run: |
              if('${{ github.actor}}' -ne 'twi-general')
