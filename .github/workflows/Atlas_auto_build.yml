@@ -7,10 +7,7 @@ on:
   pull_request_review:
     types:
       - submitted
-jobs:
-  if_approved:
-    if: (github.event.review.state == 'approved') && (github.actor != 'twi-general')
-    
+jobs:    
     runs-on: 	
       - self-hosted
       - Windows
@@ -66,6 +63,9 @@ jobs:
     steps:
       - name: Merge_PR
         run: |
-             gh pr merge Develop-Auto-Build --admin --merge
+             if(${{ github.actor}} -eq 'twi-general')
+             {
+               gh pr merge Develop-Auto-Build --admin --merge
+             }
     
     
