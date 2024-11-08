@@ -52,6 +52,7 @@ jobs:
         run: |
              echo "Hello"
   merge:
+    needs: [if_approved, Tools_Build]
     runs-on: 	
       - self-hosted
       - Windows
