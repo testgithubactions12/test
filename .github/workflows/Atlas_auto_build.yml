@@ -8,6 +8,7 @@ on:
     types:
       - submitted
 jobs:    
+  if_approved:
     runs-on: 	
       - self-hosted
       - Windows
