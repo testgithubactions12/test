@@ -1,0 +1,4 @@
+[submodule "application/sub_mod_test"]
+	path = application/sub_mod_test
+	url = https://github.com/YoussefHeshamSalah/sub_mod_test.git
+	branch = main
