@@ -8,28 +8,31 @@ on:
       - closed
 jobs:
   if_merged:
-    if: github.event.pull_request.merged == true
+    if: (github.event.pull_request.merged == true) && (github.actor != 'twi-general')
     runs-on: 	
       - self-hosted
       - Windows
-      - test
     steps:
      - uses: actions/checkout@v4
        with:
           clean: true
           fetch-depth: '0'
           submodules: 'true'
-          token: ${{secrets.TEST_SECRET}}
-     - name: Build
+          token: ${{github.token}}
+     - name: Create_Branch
        run: |
-            echo "Build new binaries"
-            .\commit.bat 
-            echo ${{github.head_ref}}
-            echo ${{github.ref_name}}
-            echo ${{github.base_ref}}
-            echo ${{github.path}}
-            echo ${{github.actor}}
-            echo ${{github.actor_id}}
-            git push origin ${{github.base_ref}}
+             git branch -D Develop-Auto-Build
+             git switch -f -c Develop-Auto-Build 
+     - name: Auto Build
+       run: |
+             echo "Auto build started"
+             .\commit.bat
+             git commit *.md -m "Auto build passed"
+             git push -f --set-upstream origin Develop-Auto-Build
+     - name: Create_PR
+       run: |
+             gh pr close Develop-Auto-Build
+             gh pr create --base main --head Develop-Auto-Build --title "build" --body "Auto build" 
+
     
     

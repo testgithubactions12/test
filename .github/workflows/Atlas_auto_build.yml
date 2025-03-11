@@ -1,43 +1,67 @@
 name: Atlas Auto Build
 on:
+  pull_request:
+    types:
+      #run the job when pull request opened
+      - opened
   pull_request_review:
     types:
       - submitted
-jobs:
+jobs:    
   if_approved:
-    if: github.event.review.state == 'approved'
-    
     runs-on: 	
       - self-hosted
       - Windows
-      - test
     steps:
-      - uses: actions/checkout@v4
-        with:
-          clean: true
-          fetch-depth: '0'
-          submodules: 'true'
-          token: ${{ secrets.TEST_SECRET }}
       - name: Build
         run: |
-             $ReviewStates = @()
-             $ReviewStates=$(gh pr view ${{ github.event.pull_request.number }} --json latestReviews --jq .[].[].state)
-
-             $approvesCount = 0
-
-             foreach($state in $ReviewStates)
+             if('${{ github.actor}}' -ne 'twi-general')
              {
-               if($state -eq "APPROVED")
-               {
-                 $approvesCount++
-               }
-             }
 
-             if($approvesCount -eq 1)
-             {
-               echo "Auto build started"
-             }
+                $ReviewStates = @()
+                $ReviewStates=$(gh pr view ${{ github.event.pull_request.number }} --json latestReviews --jq .[].[].state)
+
+                $approvesCount = 0
+
+                foreach($state in $ReviewStates)
+                {
+                  if($state -eq "APPROVED")
+                  {
+                    $approvesCount++
+                  }
+                }
+
+                if($approvesCount -eq 1)
+                {
+                  echo "Auto build started"
+                }
+              }
+              else
+              {
+                echo "skip jop"
+              }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  Tools_Build:
+    runs-on: 	
+      - self-hosted
+      - Windows
+    steps:
+      - name: Echo
+        run: |
+             echo "Hello"
+  merge:
+    needs: [if_approved, Tools_Build]
+    runs-on: 	
+      - self-hosted
+      - Windows
+    steps:
+      - name: Merge_PR
+        run: |
+             if(('${{ github.actor}}' -eq 'twi-general') -and ('${{github.event.pull_request.title}}' -eq 'build'))
+             {
+               gh pr merge Develop-Auto-Build --admin --merge
+             }
     
     
