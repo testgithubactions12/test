@@ -2,3 +2,7 @@
 	path = application/sub_mod_test
 	url = https://github.com/YoussefHeshamSalah/sub_mod_test.git
 	branch = main
+[submodule "application/sub_modd_test"]
+	path = application/sub_modd_test
+	url = https://github.com/YoussefHeshamSalah/sub_modd_test.git
+	branch = main
